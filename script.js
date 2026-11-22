@@ -1,3 +1,20 @@
+﻿/* ---------- pick full or light-weight images for this device ----------
+   Light copies live in assets/media-lite/*.webp. Force a version with ?quality=high or ?quality=lite */
+(function(){
+  var q=(location.search.match(/[?&]quality=(high|lite)/)||[])[1];
+  var c=navigator.connection||{};
+  var lite = q ? q==='lite' :
+    !!c.saveData || /(^|-)2g|3g/.test(c.effectiveType||'') ||
+    Math.min(screen.width,screen.height)<=820 || (navigator.deviceMemory&&navigator.deviceMemory<=2);
+  if(!lite) return;
+  var re=/assets\/media\/([^\/"')]+)\.(png|jpe?g)$/i;
+  function swap(el,attr){
+    var v=el.getAttribute(attr), m=v&&v.match(re);
+    if(m) el.setAttribute(attr,'assets/media-lite/'+m[1]+'.webp');
+  }
+  [].forEach.call(document.querySelectorAll('img[src]'),function(e){swap(e,'src');});
+  [].forEach.call(document.querySelectorAll('image'),function(e){swap(e,'href');});
+})();
 (function(){
   var DESIGN_W=1366, LP_W=1521, LP_H=1144;
   var root=document.documentElement, body=document.body;
