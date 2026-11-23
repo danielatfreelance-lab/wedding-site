@@ -50,6 +50,9 @@
     d.addEventListener('click',function(){go(i);}); nav.appendChild(d); dots.push(d);
   });
   main.appendChild(nav);
+  var top=document.createElement('button'); top.type='button'; top.className='to-top'; top.setAttribute('aria-label','Back to top');
+  top.innerHTML='<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" aria-hidden=\"true\"><path d=\"M5 15l7-7 7 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>';
+  top.addEventListener('click',function(){go(0);}); main.appendChild(top);
   function render(){
     secs.forEach(function(sec,i){
       var on=i===cur;
@@ -59,6 +62,7 @@
       if(on) sec.classList.add('in'); else setTimeout(function(){ if(i!==cur) sec.classList.remove('in'); },700);
       dots[i].classList.toggle('on',on);
     });
+    top.classList.toggle('show',cur>=1);
   }
   function go(i,instant){
     i=Math.max(0,Math.min(secs.length-1,i));

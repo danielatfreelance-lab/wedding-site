@@ -101,3 +101,6 @@ body.entered #main-site{position:fixed;inset:0;overflow:hidden;touch-action:none
 @media (prefers-reduced-motion:reduce){#main-site .sec,#main-site .sec.active{transition:none}}
 #sec-8{display:none}
 .deck-nav button{box-shadow:0 0 0 2px rgba(241,238,227,.9);background:rgba(241,238,227,.9)}.deck-nav button.on{background:#8b1620}
+.to-top{position:fixed;right:18px;bottom:18px;z-index:50;width:42px;height:42px;border-radius:50%;border:0;background:#8b1620;color:#f1eee3;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.3);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .35s,transform .35s,visibility 0s linear .35s,background .2s}
+.to-top.show{opacity:1;visibility:visible;transform:none;transition:opacity .35s,transform .35s,visibility 0s,background .2s}
+.to-top:hover{background:#a52030}
